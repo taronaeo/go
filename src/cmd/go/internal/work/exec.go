@@ -2587,7 +2587,8 @@ func (b *Builder) gccArchArgs() []string {
 	case "arm":
 		return []string{"-marm"} // not thumb
 	case "s390x":
-		return []string{"-m64", "-march=z196"}
+        // temporary patch to allow GCC to compile correctly
+		return []string{"-m64", "-march=z15", "-mtune=z15", "-mvx", "-mzvector"}
 	case "mips64", "mips64le":
 		args := []string{"-mabi=64"}
 		if cfg.GOMIPS64 == "hardfloat" {
